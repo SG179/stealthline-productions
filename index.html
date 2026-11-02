@@ -2,693 +2,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Investment Growth Calculator | Stealthline Productions</title>
+  <meta name="description" content="Explore potential investment growth with Stealthline Productions' free Investment Growth Calculator.">
+  <meta name="theme-color" content="#08090b">
 
-<meta name="description" content="Use our free investment growth calculator to estimate compound interest, monthly contributions and potential long-term investment returns.">
+  <title>Investment Growth Calculator | Stealthline Productions</title>
 
-<meta name="theme-color" content="#080808">
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="styles.css">
 
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #0b0b0b;
-  color: #f5f5f5;
-}
-
-/* HEADER */
-
-header {
-  background: #080808;
-  padding: 17px 8%;
-  border-bottom: 1px solid #292929;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.logo {
-  width: 58px;
-  height: 48px;
-  object-fit: contain;
-}
-
-.brand {
-  font-size: 21px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  color: #fff;
-}
-
-.brand span {
-  display: block;
-  font-size: 9px;
-  letter-spacing: 4px;
-  color: #888;
-  margin-top: 4px;
-}
-
-/* MAIN */
-
-main {
-  max-width: 1050px;
-  margin: 55px auto;
-  padding: 20px;
-}
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 12px;
-  color: #fff;
-}
-
-h2 {
-  margin-top: 0;
-  color: #fff;
-}
-
-.intro {
-  color: #999;
-  line-height: 1.7;
-  max-width: 700px;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  margin-top: 32px;
-}
-
-/* CARDS */
-
-.card {
-  background: #151515;
-  padding: 27px;
-  border: 1px solid #303030;
-  border-radius: 12px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin: 20px 0 9px;
-  color: #e5e5e5;
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  background: #090909;
-  border: 1px solid #393939;
-  border-radius: 7px;
-  font-size: 16px;
-  color: white;
-}
-
-input:focus {
-  outline: none;
-  border-color: #aaa;
-}
-
-/* BUTTON */
-
-button {
-  width: 100%;
-  margin-top: 27px;
-  padding: 15px;
-  background: #f2f2f2;
-  color: #080808;
-  border: none;
-  border-radius: 7px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #cfcfcf;
-}
-
-/* RESULTS */
-
-.result {
-  background: #202020;
-  padding: 23px;
-  border: 1px solid #383838;
-  border-radius: 9px;
-  margin-bottom: 18px;
-}
-
-.small {
-  color: #999;
-  font-size: 14px;
-}
-
-.big {
-  font-size: 32px;
-  color: #fff;
-  font-weight: bold;
-  margin: 12px 0;
-  overflow-wrap: anywhere;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 16px 0;
-  border-bottom: 1px solid #303030;
-  color: #ccc;
-}
-
-.row strong {
-  color: #fff;
-  text-align: right;
-}
-
-/* CHART */
-
-.chart-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 12px;
-  margin-top: 20px;
-  scrollbar-color: #666 #202020;
-  scrollbar-width: thin;
-}
-
-.chart {
-  display: flex;
-  align-items: flex-end;
-  height: 250px;
-  gap: 13px;
-  padding: 55px 12px 28px;
-  border-bottom: 1px solid #555;
-  width: max-content;
-  min-width: 100%;
-}
-
-.bar {
-  flex: 0 0 58px;
-  min-width: 58px;
-  background: #777;
-  border-radius: 4px 4px 0 0;
-  position: relative;
-  transition: height 0.3s ease;
-}
-
-.bar:last-child {
-  background: #fff;
-}
-
-.bar-value {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  color: #080808;
-  padding: 5px 7px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: bold;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.bar-year {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  color: #aaa;
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-/* EXPLANATION */
-
-.explanation {
-  margin-top: 30px;
-  background: #151515;
-  border: 1px solid #303030;
-  padding: 27px;
-  border-radius: 12px;
-  line-height: 1.8;
-  color: #bbb;
-}
-
-.explanation h2,
-.explanation h3 {
-  color: #fff;
-}
-
-.error {
-  color: #ff7777;
-  font-size: 14px;
-  margin-top: 12px;
-  line-height: 1.5;
-}
-
-.chart-note {
-  color: #888;
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-/* FOOTER */
-
-footer {
-  text-align: center;
-  padding: 30px 20px;
-  color: #777;
-  border-top: 1px solid #292929;
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-footer strong {
-  color: #ddd;
-}
-
-/* MOBILE */
-
-@media(max-width:700px) {
-
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  main {
-    margin: 25px auto;
-  }
-
-  h1 {
-    font-size: 29px;
-  }
-
-  header {
-    padding: 16px 5%;
-  }
-
-  .brand {
-    font-size: 17px;
-  }
-
-  .card {
-    padding: 21px;
-  }
-
-  .big {
-    font-size: 27px;
-  }
-
-}
-</style>
+  <script defer src="script.js"></script>
 </head>
 
 <body>
 
-<header>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="logo.png" alt="" onerror="this.style.display='none'">
+    <span>
+      <strong>STEALTHLINE</strong>
+      <small>PRODUCTIONS</small>
+    </span>
+  </a>
 
-<img src="logo.png"
-     alt="Stealthline Productions logo"
-     class="logo">
-
-<div class="brand">
-STEALTHLINE
-<span>PRODUCTIONS</span>
-</div>
-
+  <nav class="main-nav" aria-label="Main navigation">
+    <a class="active" href="index.html">Calculator</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="about.html">About</a>
+  </nav>
 </header>
 
-<main>
+<main class="container">
 
-<h1>Investment Growth Calculator</h1>
+  <section class="hero">
+    <p class="eyebrow">FINANCIAL PROJECTION TOOL</p>
 
-<p class="intro">
-Discover how your money could grow over time with compound interest.
-Enter your investment details to calculate your projected returns
-and visualize your potential investment growth.
-</p>
+    <h1>Investment Growth Calculator</h1>
 
-<div class="layout">
+    <p class="hero-copy">
+      Explore how an initial investment and regular contributions
+      could grow over time.
+    </p>
+  </section>
 
-<!-- INVESTMENT INPUTS -->
+  <section class="calculator-layout">
 
-<section class="card">
+    <form id="calculator-form" class="panel input-panel">
 
-<h2>Your Investment</h2>
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">YOUR ASSUMPTIONS</p>
+          <h2>Investment details</h2>
+        </div>
 
-<label for="initial">Initial Investment ($)</label>
-<input
-  type="number"
-  id="initial"
-  value="1000"
-  min="0"
-  step="any"
->
+        <span class="step-tag">01 / INPUTS</span>
+      </div>
 
-<label for="monthly">Monthly Contribution ($)</label>
-<input
-  type="number"
-  id="monthly"
-  value="100"
-  min="0"
-  step="any"
->
+      <label for="initial">
+        Initial investment
+        <span class="hint">Amount invested today</span>
+      </label>
 
-<label for="years">Investment Period (Years)</label>
-<input
-  type="number"
-  id="years"
-  value="20"
-  min="1"
-  max="100"
-  step="1"
->
+      <div class="input-wrap">
+        <span>$</span>
+        <input id="initial" type="number" min="0"
+          step="0.01" value="1000" required>
+      </div>
 
-<label for="rate">Expected Annual Return (%)</label>
-<input
-  type="number"
-  id="rate"
-  value="8"
-  min="0"
-  max="100"
-  step="any"
->
+      <label for="monthly">
+        Monthly contribution
+        <span class="hint">Amount added each month</span>
+      </label>
 
-<button onclick="calculate()">
-Calculate Growth
-</button>
+      <div class="input-wrap">
+        <span>$</span>
+        <input id="monthly" type="number" min="0"
+          step="0.01" value="100" required>
+      </div>
 
-<div id="error" class="error" role="alert"></div>
+      <label for="years">
+        Investment period
+        <span class="hint">Number of years</span>
+      </label>
 
-</section>
+      <div class="input-wrap">
+        <input id="years" type="number" min="1"
+          max="100" step="1" value="20" required>
+        <span class="suffix">years</span>
+      </div>
 
-<!-- RESULTS -->
+      <label for="rate">
+        Expected annual return
+        <span class="hint">An assumption, not a guarantee</span>
+      </label>
 
-<section class="card">
+      <div class="input-wrap">
+        <input id="rate" type="number" min="0"
+          max="100" step="0.1" value="7" required>
+        <span class="suffix">%</span>
+      </div>
 
-<h2>Your Results</h2>
+      <button class="button button-primary full-width" type="submit">
+        Calculate growth <span aria-hidden="true">→</span>
+      </button>
 
-<div class="result">
+      <p id="error-message" class="error-message" role="alert"></p>
 
-<div class="small">Projected Final Balance</div>
+      <p class="small-note">
+        This calculator is an educational estimator.
+        It does not recommend investments.
+      </p>
 
-<div class="big" id="final">--</div>
+    </form>
 
-<div class="small">
-Estimated value after your investment period
-</div>
+    <div class="results-column">
 
-</div>
+      <section class="panel result-panel">
 
-<div class="row">
-<span>Total Money Invested</span>
-<strong id="invested">--</strong>
-</div>
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">PROJECTED OUTCOME</p>
+            <h2>Estimated future value</h2>
+          </div>
 
-<div class="row">
-<span>Investment Gains</span>
-<strong id="gains">--</strong>
-</div>
+          <span class="live-tag">
+            <i></i> ESTIMATE
+          </span>
+        </div>
 
-<div class="row">
-<span>Total ROI</span>
-<strong id="roi">--</strong>
-</div>
+        <p class="result-label">Projected portfolio value</p>
 
-<div class="row">
-<span>Expected Annual Return</span>
-<strong id="displayRate">--</strong>
-</div>
+        <p class="big-number" id="future-value">$0.00</p>
 
-</section>
+        <div class="result-grid">
 
-</div>
+          <div>
+            <span>Total contributed</span>
+            <strong id="total-invested">$0.00</strong>
+          </div>
 
-<!-- INVESTMENT CHART -->
+          <div>
+            <span>Estimated growth</span>
+            <strong id="growth">$0.00</strong>
+          </div>
 
-<section class="card" style="margin-top:22px">
+          <div>
+            <span>Return on contributions</span>
+            <strong id="roi">0.0%</strong>
+          </div>
 
-<h2>Investment Growth Over Time</h2>
+          <div>
+            <span>Investment period</span>
+            <strong id="period">20 years</strong>
+          </div>
 
-<p class="small">
-Your projected portfolio value at different years.
-Scroll horizontally to view all years.
-</p>
+        </div>
+      </section>
 
-<div class="chart-wrapper">
+      <section class="panel chart-panel">
 
-<div class="chart" id="chart"></div>
+        <div class="panel-heading chart-heading">
+          <div>
+            <p class="eyebrow">YEAR-BY-YEAR VIEW</p>
+            <h2>Projected growth</h2>
+          </div>
 
-</div>
+          <span class="step-tag">02 / PROJECTION</span>
+        </div>
 
-<p class="chart-note">
-Dollar values are estimates. Hover over a bar for its year and value.
-</p>
+        <div class="chart-legend">
+          <span><i class="legend-dot"></i> Estimated portfolio value</span>
+        </div>
 
-</section>
+        <div id="chart" class="chart"
+          aria-label="Projected portfolio value by year">
+        </div>
 
-<!-- EXPLANATION -->
+        <p class="chart-footnote">
+          Illustrative values based on the assumptions entered above.
+        </p>
 
-<section class="explanation">
+      </section>
 
-<h2>How Does Compound Interest Work?</h2>
+    </div>
+  </section>
 
-<p>
-Compound interest means you earn returns on your original investment
-and on the returns you've already earned. Over long periods, this
-can significantly increase your investment value.
-</p>
+  <section class="info-strip">
 
-<h3>How We Calculate Investment Growth</h3>
+    <div>
+      <span class="info-number">01</span>
+      <div>
+        <h3>Choose your inputs</h3>
+        <p>
+          Enter your starting amount, monthly contribution,
+          timeline and assumed return.
+        </p>
+      </div>
+    </div>
 
-<p>
-This calculator uses monthly compounding. Your expected annual
-return is divided into monthly rates, and your monthly contribution
-is added at the end of each month.
-</p>
+    <div>
+      <span class="info-number">02</span>
+      <div>
+        <h3>Review the estimate</h3>
+        <p>
+          See how much comes from your contributions
+          and how much is estimated growth.
+        </p>
+      </div>
+    </div>
 
-<p>
-The calculation assumes a consistent return throughout the entire
-investment period. Real investment returns do not behave this way.
-</p>
+    <div>
+      <span class="info-number">03</span>
+      <div>
+        <h3>Understand the limits</h3>
+        <p>
+          Actual investment results vary and may be lower
+          than the projection, including losses.
+        </p>
+      </div>
+    </div>
 
-<h3>Important Information</h3>
+  </section>
 
-<p>
-This calculator provides estimates based on your selected annual
-return. Actual investment returns fluctuate and are never guaranteed.
-Results do not account for taxes, investment fees or inflation.
-</p>
+  <section class="disclaimer-inline">
 
-<p>
-This tool is provided for educational purposes only and does not
-constitute financial advice.
-</p>
+    <strong>Important:</strong>
 
-</section>
+    This calculator provides hypothetical estimates for
+    educational purposes only.
+
+    It is not financial, investment, tax or legal advice.
+    Returns are not guaranteed.
+
+    Read our
+    <a href="disclaimer.html">full disclaimer</a>
+    and
+    <a href="methodology.html">calculation methodology</a>.
+
+  </section>
 
 </main>
 
-<footer>
+<footer class="site-footer">
 
-© 2026 <strong>Stealthline Productions</strong>.
-All rights reserved.
+  <div class="footer-top">
+    <a class="footer-brand" href="index.html">
+      STEALTHLINE <span>PRODUCTIONS</span>
+    </a>
 
-<p>
-Independent investment calculator for educational purposes.
-</p>
+    <p>Independent digital project · Educational tools</p>
+  </div>
+
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p class="copyright">
+    © <span data-year></span> Stealthline Productions.
+    All rights reserved.
+  </p>
 
 </footer>
 
-<script>
+<!-- OPTIONAL ANALYTICS CONSENT -->
 
-function calculate() {
+<div id="cookie-banner" class="cookie-banner" hidden>
 
-  const initialInput =
-    document.getElementById("initial");
+  <div>
+    <strong>Privacy choices</strong>
 
-  const monthlyInput =
-    document.getElementById("monthly");
+    <p>
+      We use Google Analytics only if you choose to allow
+      optional analytics. You can reject it and still use
+      the calculator.
 
-  const yearsInput =
-    document.getElementById("years");
+      <a href="privacy.html">Privacy Policy</a>.
+    </p>
+  </div>
 
-  const rateInput =
-    document.getElementById("rate");
+  <div class="cookie-actions">
 
-  const initial = Number(initialInput.value);
-  const monthly = Number(monthlyInput.value);
-  const years = Number(yearsInput.value);
-  const rate = Number(rateInput.value);
+    <button id="reject-analytics"
+      class="button button-secondary">
+      Reject
+    </button>
 
-  const error = document.getElementById("error");
+    <button id="accept-analytics"
+      class="button button-primary">
+      Accept analytics
+    </button>
 
-  error.textContent = "";
+  </div>
 
-  // VALIDATION
-
-  if (
-    initialInput.value === "" ||
-    monthlyInput.value === "" ||
-    yearsInput.value === "" ||
-    rateInput.value === "" ||
-
-    ![initial, monthly, years, rate].every(Number.isFinite) ||
-
-    initial < 0 ||
-    monthly < 0 ||
-
-    years < 1 ||
-    years > 100 ||
-    !Number.isInteger(years) ||
-
-    rate < 0 ||
-    rate > 100 ||
-
-    (initial === 0 && monthly === 0)
-  ) {
-
-    error.textContent =
-      "Enter valid values. Invest at least some money, use 1–100 years and a return between 0% and 100%.";
-
-    return;
-
-  }
-
-  // CALCULATION
-
-  const months = years * 12;
-
-  const monthlyRate = rate / 100 / 12;
-
-  let balance = initial;
-
-  const totalInvested =
-    initial + monthly * months;
-
-  const chartValues = [initial];
-
-  for (let i = 1; i <= months; i++) {
-
-    balance =
-      balance * (1 + monthlyRate) + monthly;
-
-    if (i % 12 === 0) {
-      chartValues.push(balance);
-    }
-
-  }
-
-  const gains = balance - totalInvested;
-
-  const roi =
-    totalInvested > 0
-      ? (gains / totalInvested) * 100
-      : 0;
-
-  // CURRENCY FORMATTING
-
-  const money = n =>
-    "$" + n.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-
-  // DISPLAY RESULTS
-
-  document.getElementById("final").textContent =
-    money(balance);
-
-  document.getElementById("invested").textContent =
-    money(totalInvested);
-
-  document.getElementById("gains").textContent =
-    money(gains);
-
-  document.getElementById("roi").textContent =
-    roi.toFixed(2) + "%";
-
-  document.getElementById("displayRate").textContent =
-    rate + "%";
-
-  // BUILD CHART
-
-  const chart =
-    document.getElementById("chart");
-
-  chart.innerHTML = "";
-
-  const maxValue = Math.max(...chartValues, 1);
-
-  const maxBarHeight = 135;
-
-  chartValues.forEach((value, index) => {
-
-    const bar = document.createElement("div");
-
-    bar.className = "bar";
-
-    const height =
-      Math.max(3, (value / maxValue) * maxBarHeight);
-
-    bar.style.height = height + "px";
-
-    // WHITE DOLLAR LABEL
-
-    const valueLabel =
-      document.createElement("span");
-
-    valueLabel.className = "bar-value";
-
-    valueLabel.textContent = money(value);
-
-    // YEAR LABEL
-
-    const yearLabel =
-      document.createElement("span");
-
-    yearLabel.className = "bar-year";
-
-    yearLabel.textContent = "Year " + index;
-
-    // ACCESSIBLE TOOLTIP
-
-    bar.title =
-      "Year " + index + ": " + money(value);
-
-    bar.setAttribute(
-      "aria-label",
-      "Year " + index + ", portfolio value " + money(value)
-    );
-
-    bar.appendChild(valueLabel);
-    bar.appendChild(yearLabel);
-
-    chart.appendChild(bar);
-
-  });
-
-}
-
-// INITIAL CALCULATION
-
-calculate();
-
-</script>
+</div>
 
 </body>
 </html>
+
