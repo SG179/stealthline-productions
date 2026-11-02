@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Investment Growth Calculator | Stealthline Productions</title>
+
+<meta name="description" content="Calculate your potential investment growth with our free investment growth calculator. Estimate compound interest, monthly contributions and long-term returns.">
+
+<meta name="theme-color" content="#080808">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0b;
+  color: #f5f5f5;
+}
+
+/* HEADER */
+
+header {
+  background: #080808;
+  padding: 17px 8%;
+  border-bottom: 1px solid #292929;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  width: 58px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.brand {
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+}
+
+.brand span {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* MAIN */
+
+main {
+  max-width: 1050px;
+  margin: 55px auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.intro {
+  color: #999;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 32px;
+}
+
+/* CARDS */
+
+.card {
+  background: #151515;
+  padding: 27px;
+  border: 1px solid #303030;
+  border-radius: 12px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 20px 0 9px;
+  color: #e5e5e5;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  background: #090909;
+  border: 1px solid #393939;
+  border-radius: 7px;
+  font-size: 16px;
+  color: white;
+}
+
+input:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+/* BUTTON */
+
+button {
+  width: 100%;
+  margin-top: 27px;
+  padding: 15px;
+  background: #f2f2f2;
+  color: #080808;
+  border: none;
+  border-radius: 7px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #cfcfcf;
+}
+
+/* RESULTS */
+
+.result {
+  background: #202020;
+  padding: 23px;
+  border: 1px solid #383838;
+  border-radius: 9px;
+  margin-bottom: 18px;
+}
+
+.small {
+  color: #999;
+  font-size: 14px;
+}
+
+.big {
+  font-size: 32px;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 0;
+  border-bottom: 1px solid #303030;
+  color: #ccc;
+}
+
+.row strong {
+  color: #fff;
+  text-align: right;
+}
+
+/* CHART */
+
+.chart {
+  display: flex;
+  align-items: end;
+  height: 180px;
+  gap: 5px;
+  margin-top: 25px;
+  border-bottom: 1px solid #555;
+}
+
+.bar {
+  flex: 1;
+  min-width: 0;
+  background: #777;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+.bar:last-child {
+  background: #fff;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 12px;
+  margin-top: 9px;
+}
+
+/* EXPLANATION */
+
+.explanation {
+  margin-top: 30px;
+  background: #151515;
+  border: 1px solid #303030;
+  padding: 27px;
+  border-radius: 12px;
+  line-height: 1.8;
+  color: #bbb;
+}
+
+.explanation h2,
+.explanation h3 {
+  color: #fff;
+}
+
+.warning {
+  font-size: 13px;
+  color: #888;
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+.error {
+  color: #ff7777;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: #777;
+  border-top: 1px solid #292929;
+  font-size: 13px;
+}
+
+footer strong {
+  color: #ddd;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size: 29px;
+  }
+
+  header {
+    padding: 16px 5%;
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="Stealthline Productions logo" class="logo">
+  <div class="brand">
+    STEALTHLINE
+    <span>PRODUCTIONS</span>
+  </div>
+</header>
+
+<main>
+
+<h1>Investment Growth Calculator</h1>
+
+<p class="intro">
+Discover how your money could grow over time with compound interest.
+Enter your investment details to calculate your projected returns
+and visualize your potential investment growth.
+</p>
+
+<div class="layout">
+
+<section class="card">
+
+<h2>Your Investment</h2>
+
+<label for="initial">Initial Investment ($)</label>
+<input type="number" id="initial" value="1000" min="0" step="any">
+
+<label for="monthly">Monthly Contribution ($)</label>
+<input type="number" id="monthly" value="100" min="0" step="any">
+
+<label for="years">Investment Period (Years)</label>
+<input type="number" id="years" value="20" min="1" max="100" step="1">
+
+<label for="rate">Expected Annual Return (%)</label>
+<input type="number" id="rate" value="8" min="0" max="100" step="any">
+
+<button onclick="calculate()">Calculate Growth</button>
+
+<div id="error" class="error" role="alert"></div>
+
+</section>
+
+<section class="card">
+
+<h2>Your Results</h2>
+
+<div class="result">
+  <div class="small">Projected Final Balance</div>
+  <div class="big" id="final">Calculating...</div>
+  <div class="small">Estimated value after your investment period</div>
+</div>
+
+<div class="row">
+  <span>Total Money Invested</span>
+  <strong id="invested">--</strong>
+</div>
+
+<div class="row">
+  <span>Investment Gains</span>
+  <strong id="gains">--</strong>
+</div>
+
+<div class="row">
+  <span>Total ROI</span>
+  <strong id="roi">--</strong>
+</div>
+
+<div class="row">
+  <span>Annual Return</span>
+  <strong id="displayRate">--</strong>
+</div>
+
+</section>
+
+</div>
+
+<section class="card" style="margin-top:22px">
+
+<h2>Investment Growth Over Time</h2>
+
+<p class="small">
+Your projected portfolio value at different years.
+</p>
+
+<div class="chart" id="chart"></div>
+
+<div class="chart-labels">
+  <span>Year 0</span>
+  <span id="endYear">Year 20</span>
+</div>
+
+</section>
+
+<section class="explanation">
+
+<h2>How Does Compound Interest Work?</h2>
+
+<p>
+Compound interest means you earn returns on your original investment
+and on the returns you've already earned. Over long periods, this
+can significantly increase your investment value.
+</p>
+
+<h3>How We Calculate Investment Growth</h3>
+
+<p>
+This calculator uses monthly compounding. Your annual expected
+return is divided into monthly rates, and your monthly contribution
+is added at the end of each month.
+</p>
+
+<h3>Important Information</h3>
+
+<p>
+This calculator provides estimates based on your selected annual
+return. Actual investment returns fluctuate and are never guaranteed.
+Results do not account for taxes, investment fees or inflation.
+</p>
+
+</section>
+
+</main>
+
+<footer>
+  © 2026 <strong>Stealthline Productions</strong>.
+  All rights reserved.
+  <p>Independent financial calculator for educational purposes.</p>
+</footer>
+
+<script>
+
+function calculate() {
+
+  const initialInput = document.getElementById("initial");
+  const monthlyInput = document.getElementById("monthly");
+  const yearsInput = document.getElementById("years");
+  const rateInput = document.getElementById("rate");
+
+  const initial = Number(initialInput.value);
+  const monthly = Number(monthlyInput.value);
+  const years = Number(yearsInput.value);
+  const rate = Number(rateInput.value);
+
+  const error = document.getElementById("error");
+
+  error.textContent = "";
+
+  if (
+    initialInput.value === "" ||
+    monthlyInput.value === "" ||
+    yearsInput.value === "" ||
+    rateInput.value === "" ||
+    ![initial, monthly, years, rate].every(Number.isFinite) ||
+    initial < 0 ||
+    monthly < 0 ||
+    years < 1 ||
+    years > 100 ||
+    !Number.isInteger(years) ||
+    rate < 0 ||
+    rate > 100 ||
+    (initial === 0 && monthly === 0)
+  ) {
+
+    error.textContent =
+      "Enter valid values. Invest at least some money, use 1–100 years and a return between 0% and 100%.";
+
+    return;
+  }
+
+  const months = years * 12;
+  const monthlyRate = rate / 100 / 12;
+
+  let balance = initial;
+
+  const totalInvested = initial + monthly * months;
+
+  const chartValues = [initial];
+
+  for (let i = 1; i <= months; i++) {
+
+    balance = balance * (1 + monthlyRate) + monthly;
+
+    if (i % 12 === 0) {
+      chartValues.push(balance);
+    }
+
+  }
+
+  const gains = balance - totalInvested;
+
+  const roi = totalInvested > 0
+    ? (gains / totalInvested) * 100
+    : 0;
+
+  const money = n => "$" + n.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  document.getElementById("final").textContent = money(balance);
+
+  document.getElementById("invested").textContent =
+    money(totalInvested);
+
+  document.getElementById("gains").textContent =
+    money(gains);
+
+  document.getElementById("roi").textContent =
+    roi.toFixed(2) + "%";
+
+  document.getElementById("displayRate").textContent =
+    rate + "%";
+
+  document.getElementById("endYear").textContent =
+    "Year " + years;
+
+  const max = Math.max(...chartValues);
+
+  const chart = document.getElementById("chart");
+
+  chart.innerHTML = "";
+
+  chartValues.forEach((value, index) => {
+
+    const bar = document.createElement("div");
+
+    bar.className = "bar";
+
+    bar.style.height =
+      Math.max(2, value / max * 100) + "%";
+
+    bar.title =
+      "Year " + index + ": " + money(value);
+
+    chart.appendChild(bar);
+
+  });
+
+}
+
+calculate();
+
+</script>
+
+</body>
+</html>
